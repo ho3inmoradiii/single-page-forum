@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ReplyResource;
+use App\Models\Question;
+use App\Models\Reply;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ReplyController extends Controller
 {
@@ -12,30 +16,20 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        return ReplyResource::collection($question->replies);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Question $question,Request $request)
     {
-        //
+        $reply = $question->replies()->create($request->all());
+        return response(['reply'=>new ReplyResource($reply)],Response::HTTP_CREATED);
     }
 
     /**
@@ -44,20 +38,9 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question,Reply $reply)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return new ReplyResource($reply);
     }
 
     /**
@@ -67,9 +50,10 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Question $question,Reply $reply,Request $request)
     {
-        //
+        $reply->update($request->all());
+        return response('Updated',Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -78,8 +62,9 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question,Reply $reply)
     {
-        //
+        $reply->delete();
+        return response('ریپلای مورد نظر با موفقیت حذف شد',Response::HTTP_NO_CONTENT);
     }
 }
