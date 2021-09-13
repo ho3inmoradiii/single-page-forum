@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuestionResource;
 use App\Models\Question;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Question[]|\Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        //
+        $questions = Question::latest()->get();
+        return QuestionResource::collection($questions);
     }
 
     /**
@@ -36,7 +39,8 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Question::create($request->all());
+        return response('created',Response::HTTP_CREATED);
     }
 
     /**
@@ -47,7 +51,8 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+//        $question = Question::findOrFail($question->slug);
+        return new QuestionResource($question);
     }
 
     /**
@@ -81,6 +86,7 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return response(null,Response::HTTP_NO_CONTENT);
     }
 }
