@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::latest()->get();
+        return CategoryResource::collection($categories);
     }
 
     /**
@@ -36,7 +40,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //        Question::create($request->all());
+        $category = new Category;
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name,'-');
+        $category->save();
+        return response('کتگوری مورد نظر ساخته شد',Response::HTTP_CREATED);
     }
 
     /**
@@ -47,7 +56,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return new CategoryResource($category);
     }
 
     /**
@@ -70,7 +79,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+        return response('کتگوری مورد نظر با موفقیت آپدیت شد',Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -81,6 +94,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response('کتگوری مورد نظر با موفقیت حذف شد',Response::HTTP_NO_CONTENT);
     }
 }
