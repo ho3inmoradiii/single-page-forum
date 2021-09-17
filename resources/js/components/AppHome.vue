@@ -1,13 +1,16 @@
 <template>
-        <v-container>
+        <div>
             <toolbar></toolbar>
-        </v-container>
+            <v-spacer></v-spacer>
+            <app-footer></app-footer>
+        </div>
 </template>
 
 <script>
     import Toolbar from './Toolbar';
+    import AppFooter from './AppFooter';
     export default {
-        components:{Toolbar}
+        components:{Toolbar,AppFooter}
     }
 </script>
 

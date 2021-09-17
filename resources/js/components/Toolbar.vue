@@ -9,23 +9,35 @@
             H.Forum
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn
-            text
-            rounded
-        >لینک 1</v-btn>
-        <v-btn
-            text
-            rounded
-        >لینک 2</v-btn>
-        <v-btn
-            text
-            rounded
-        >لینک 3</v-btn>
+        <div style="direction: rtl">
+            <v-btn
+                text
+                rounded
+            >صفحه اصلی</v-btn>
+            <v-btn
+                text
+                rounded
+            >سوالت بپرس</v-btn>
+            <v-btn
+                text
+                rounded
+            >دسته بندی ها</v-btn>
+            <v-btn
+                text
+                rounded
+            >ورود</v-btn>
+        </div>
     </v-app-bar>
 </template>
 
 <script>
-
+    export default {
+        methods: {
+            changeRTL () {
+                this.$vuetify.rtl = true
+            },
+        },
+    }
 </script>
 
 <style>

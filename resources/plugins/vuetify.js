@@ -3,6 +3,6 @@ import Vuetify from 'vuetify/lib'
 
 Vue.use(Vuetify)
 
-const opts = {}
+const opts = {rtl: true,}
 
 export default new Vuetify(opts)
