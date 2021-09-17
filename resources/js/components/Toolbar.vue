@@ -22,10 +22,12 @@
                 text
                 rounded
             >دسته بندی ها</v-btn>
-            <v-btn
-                text
-                rounded
-            >ورود</v-btn>
+            <router-link to="/login">
+                <v-btn
+                    text
+                    rounded
+                >ورود</v-btn>
+            </router-link>
         </div>
     </v-app-bar>
 </template>

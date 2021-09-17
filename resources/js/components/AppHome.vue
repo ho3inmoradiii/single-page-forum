@@ -1,9 +1,13 @@
 <template>
+    <v-app>
         <div>
             <toolbar></toolbar>
-            <v-spacer></v-spacer>
-            <app-footer></app-footer>
+            <div class="content">
+                <router-view></router-view>
+                <app-footer></app-footer>
+            </div>
         </div>
+    </v-app>
 </template>
 
 <script>
@@ -14,6 +18,8 @@
     }
 </script>
 
-<style>
-
+<style scoped>
+    .content{
+        margin-top: 50px;
+    }
 </style>
