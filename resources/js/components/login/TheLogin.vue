@@ -19,12 +19,20 @@
                 label="رمز عبور"
                 required
             ></v-text-field>
-
+            <router-link to="/signUp">
+                <v-btn
+                    color="primary"
+                    elevation="4"
+                    outlined
+                >ثبت نام</v-btn>
+            </router-link>
             <v-btn
                 depressed
                 color="primary"
                 type="submit">ورود</v-btn>
         </v-form>
+
+
     </v-container>
 </template>
 
@@ -45,6 +53,11 @@
                     v => !!v || 'E-mail is required',
                     v => /.+@.+/.test(v) || 'E-mail must be valid',
                 ],
+            }
+        },
+        created() {
+            if(User.loggedIn()){
+                this.$router.push({name:'Forum'})
             }
         },
         methods:{

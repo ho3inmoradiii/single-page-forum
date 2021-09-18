@@ -1,11 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TheLogin from '../components/login/TheLogin';
+import TheSignup from '../components/login/TheSignup';
+import TheForum from '../components/forum/TheForum';
+import TheLogout from '../components/login/TheLogout';
 
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/login', component: TheLogin },
+    { name:'Login', path: '/login', component: TheLogin },
+    { name:'Signup', path: '/signup', component: TheSignup },
+    { name:'Logout', path: '/logout', component: TheLogout },
+    { name:'Forum', path: '/forum', component: TheForum },
 ]
 
 const router = new VueRouter({
