@@ -1,6 +1,6 @@
 <template>
     <v-app-bar
-        color="primary accent-4"
+        color="accent-4"
         dense
         dark
         app

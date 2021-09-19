@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class QuestionResource extends JsonResource
 {
@@ -14,12 +15,14 @@ class QuestionResource extends JsonResource
      */
     public function toArray($request)
     {
+        $now = Carbon::now();
+        $created_at = $this->created_at;
         return[
             'title' => $this->title,
             'path' => $this->path,
             'body' => $this->body,
             'category' =>$this->category->name,
-            'created_at' => $this->created_at->diffForHumans(),
+            'created_at' => $now->diffInDays($created_at),
             'user' => $this->user->name
         ];
     }

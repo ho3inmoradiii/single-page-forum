@@ -4,6 +4,7 @@ import TheLogin from '../components/login/TheLogin';
 import TheSignup from '../components/login/TheSignup';
 import TheForum from '../components/forum/TheForum';
 import TheLogout from '../components/login/TheLogout';
+import QuestionDetail from "../components/forum/QuestionDetail";
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,7 @@ const routes = [
     { name:'Signup', path: '/signup', component: TheSignup },
     { name:'Logout', path: '/logout', component: TheLogout },
     { name:'Forum', path: '/forum', component: TheForum },
+    { path: '/question/:questionSlug', component: QuestionDetail, props:true },
 ]
 
 const router = new VueRouter({

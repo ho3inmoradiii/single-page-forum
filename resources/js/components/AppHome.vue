@@ -4,6 +4,7 @@
             <toolbar></toolbar>
             <div class="content">
                 <router-view></router-view>
+<!--                <vue-progress-bar></vue-progress-bar>-->
                 <app-footer></app-footer>
             </div>
         </div>

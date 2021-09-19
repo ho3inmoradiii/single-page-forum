@@ -27,7 +27,7 @@ class Question extends Model
     }
 
     public function getPathAttribute(){
-        return asset("api/resource/$this->slug");
+        return "question/$this->slug";
     }
 
     use HasFactory;

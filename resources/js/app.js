@@ -10,6 +10,35 @@ window.Vue = require('vue').default;
 
 import Vuetify from "../plugins/vuetify";
 import router from "./router/router";
+import NProgress from "nprogress";
+import 'nprogress/nprogress.css';
+
+NProgress.configure({ easing: 'ease',showSpinner: false });
+
+axios.interceptors.request.use(function(config){
+    NProgress.start();
+    return config;
+},function(error){
+    console.error(error)
+    return Promise.reject(error);
+});
+
+axios.interceptors.response.use(function (response){
+    NProgress.done();
+    return response;
+},function (error){
+    console.error(error)
+    return Promise.reject(error);
+});
+
+$(document).ajaxComplete(function (event,request,settings) {
+    console.log(2);
+    NProgress.done();
+});
+
+$(document).ajaxStart(function () {
+    NProgress.start();
+});
 
 
 /**
@@ -40,5 +69,5 @@ window.EventBus = new Vue();
 const app = new Vue({
     el: '#app',
     vuetify:Vuetify,
-    router
+    router,
 });
