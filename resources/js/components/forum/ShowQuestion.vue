@@ -12,8 +12,8 @@
                 <v-btn color="teal">5 ریپلای</v-btn>
             </v-card-title>
             <v-card-text>
-                <div class="text-right">
-                    {{ data.body }}
+                <div class="text-right" v-html="body">
+
                 </div>
             </v-card-text>
         </v-container>
@@ -22,7 +22,12 @@
 
 <script>
     export default {
-        props:['data']
+        props:['data'],
+        computed:{
+            body(){
+                return marked.parse(this.data.body);
+            }
+        }
     }
 </script>
 

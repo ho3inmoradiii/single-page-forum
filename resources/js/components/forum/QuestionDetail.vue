@@ -1,5 +1,5 @@
 <template>
-    <show-question :data="question"></show-question>
+    <show-question :data="question" v-if="question"></show-question>
 </template>
 
 <script>
@@ -9,14 +9,13 @@
         props:['questionSlug'],
         data(){
             return{
-                question: {}
+                question: null
             }
         },
         created() {
             axios.get(`/api/question/${this.questionSlug}`)
             .then(res => this.question = res.data)
             .catch(error => console.log(error.response.data.error))
-            console.log(this.question)
         },
     }
 </script>

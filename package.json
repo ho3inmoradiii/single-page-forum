@@ -27,9 +27,11 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "marked": "^3.0.4",
         "nprogress": "^0.2.0",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.5.2",
+        "vue-simplemde": "^2.0.0",
         "vuetify": "^2.5.8",
         "vuetify-loader": "^1.7.3"
     }

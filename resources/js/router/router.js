@@ -5,6 +5,7 @@ import TheSignup from '../components/login/TheSignup';
 import TheForum from '../components/forum/TheForum';
 import TheLogout from '../components/login/TheLogout';
 import QuestionDetail from "../components/forum/QuestionDetail";
+import CreateQuestion from "../components/forum/CreateQuestion";
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,7 @@ const routes = [
     { name:'Logout', path: '/logout', component: TheLogout },
     { name:'Forum', path: '/forum', component: TheForum },
     { path: '/question/:questionSlug', component: QuestionDetail, props:true },
+    { path: '/ask', component: CreateQuestion },
 ]
 
 const router = new VueRouter({

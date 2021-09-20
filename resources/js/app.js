@@ -12,6 +12,10 @@ import Vuetify from "../plugins/vuetify";
 import router from "./router/router";
 import NProgress from "nprogress";
 import 'nprogress/nprogress.css';
+import VueSimplemde from 'vue-simplemde'
+import 'simplemde/dist/simplemde.min.css'
+import marked from 'marked';
+window.marked = marked;
 
 NProgress.configure({ easing: 'ease',showSpinner: false });
 
@@ -54,6 +58,7 @@ $(document).ajaxStart(function () {
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('AppHome', require('./components/AppHome.vue').default);
+Vue.component('vue-simplemde', VueSimplemde);
 
 import User from "./Helpers/User";
 window.User = User;
