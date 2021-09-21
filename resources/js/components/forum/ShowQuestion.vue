@@ -16,6 +16,18 @@
 
                 </div>
             </v-card-text>
+            <v-card-actions v-if="showActionButtons">
+                <v-btn icon small>
+                    <v-icon color="orange">
+                        edit
+                    </v-icon>
+                </v-btn>
+                <v-btn icon small @click="deletequestion">
+                    <v-icon color="red">
+                        delete
+                    </v-icon>
+                </v-btn>
+            </v-card-actions>
         </v-container>
     </v-card>
 </template>
@@ -23,9 +35,30 @@
 <script>
     export default {
         props:['data'],
+        data(){
+            return{
+                showActionButtons:false,
+            }
+        },
         computed:{
             body(){
                 return marked.parse(this.data.body);
+            }
+        },
+        created() {
+            if (User.own(this.data.id)){
+                this.showActionButtons = true;
+            }
+            console.log(this.$route.params)
+        },
+        methods:{
+            deletequestion(){
+                axios.delete(`/api/question/${this.$route.params.questionSlug}`)
+                .then(res => {
+                    console.log(res.data)
+                    this.$router.push('/forum')
+                })
+                .catch(error => console.log(error.response.data))
             }
         }
     }

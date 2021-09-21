@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "marked": "^3.0.4",
+        "material-design-icons-iconfont": "^6.1.0",
         "nprogress": "^0.2.0",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.5.2",

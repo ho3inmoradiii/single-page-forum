@@ -16,6 +16,8 @@ import VueSimplemde from 'vue-simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import marked from 'marked';
 window.marked = marked;
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
 
 NProgress.configure({ easing: 'ease',showSpinner: false });
 
@@ -62,6 +64,8 @@ Vue.component('vue-simplemde', VueSimplemde);
 
 import User from "./Helpers/User";
 window.User = User;
+
+//console.log(User.own(12));
 
 window.EventBus = new Vue();
 
