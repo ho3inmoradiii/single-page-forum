@@ -17,7 +17,7 @@
                 </div>
             </v-card-text>
             <v-card-actions v-if="showActionButtons">
-                <v-btn icon small>
+                <v-btn icon small @click="editQuestion">
                     <v-icon color="orange">
                         edit
                     </v-icon>
@@ -55,10 +55,12 @@
             deletequestion(){
                 axios.delete(`/api/question/${this.$route.params.questionSlug}`)
                 .then(res => {
-                    console.log(res.data)
                     this.$router.push('/forum')
                 })
                 .catch(error => console.log(error.response.data))
+            },
+            editQuestion(){
+                EventBus.$emit('startEditing')
             }
         }
     }
