@@ -4,15 +4,18 @@
             <v-flex xs8>
                 <the-question v-for="question in questions" :key="question.path" :question="question"></the-question>
             </v-flex>
-            sidebar
+            <v-flex xs4 class="position-relative">
+                <the-sidebar></the-sidebar>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
     import TheQuestion from './TheQuestion';
+    import TheSidebar from './TheSidebar';
     export default {
-        components:{TheQuestion},
+        components:{TheQuestion,TheSidebar},
         data(){
             return{
                 questions: {}
