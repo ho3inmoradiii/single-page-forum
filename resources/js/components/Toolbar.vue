@@ -27,7 +27,7 @@
                 items:[
                     {title:'صفحه اصلی',to:'/forum',show:true},
                     {title:'سوالتو بپرس',to:'/ask',show:User.loggedIn()},
-                    {title:'دسته بندی ها',to:'/category',show:User.loggedIn()},
+                    {title:'دسته بندی ها',to:'/category',show:User.admin()},
                     {title:'ورود',to:'/login',show:!User.loggedIn()},
                     {title:'خروج',to:'/logout',show:User.loggedIn()},
                 ]

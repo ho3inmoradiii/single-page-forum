@@ -21,6 +21,8 @@ class QuestionResource extends JsonResource
             'title' => $this->title,
             'path' => $this->path,
             'body' => $this->body,
+            'replies' => $this->replies,
+            'replies_count' => $this->replies->count(),
             'category' =>$this->category->name,
             'created_at' => $now->diffInDays($created_at),
             'user' => $this->user->name,

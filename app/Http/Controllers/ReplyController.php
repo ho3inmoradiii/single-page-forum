@@ -23,7 +23,11 @@ class ReplyController extends Controller
      */
     public function index(Question $question)
     {
-        return ReplyResource::collection($question->replies);
+        $collection = ReplyResource::collection($question->replies);
+        $sorted = $collection->sortBy([
+            ['created_at', 'desc'],
+        ]);
+        return $sorted->values()->all();
     }
     /**
      * Store a newly created resource in storage.

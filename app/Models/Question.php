@@ -11,6 +11,8 @@ class Question extends Model
 
     protected $guarded = [];
 
+    protected $with = ['replies'];
+
     public function getRouteKeyName()
     {
         return 'slug';

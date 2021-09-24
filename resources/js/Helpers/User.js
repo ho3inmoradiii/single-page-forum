@@ -51,6 +51,10 @@ class User {
         if (this.id() == id) return true;
         return false;
     }
+
+    admin(){
+        return this.id() === 12;
+    }
 }
 
 export default User = new User;

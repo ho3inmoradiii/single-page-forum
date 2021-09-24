@@ -68,10 +68,12 @@
             }
         },
         created() {
+            if (!User.admin()){
+                this.$router.push('/forum');
+            }
             axios.get('/api/category')
                 .then(res => this.items = res.data)
                 .catch(error => console.log(error.response.data))
-
         },
         methods:{
             submit(){
@@ -102,7 +104,6 @@
             edit(index){
                 this.form.name = this.items[index].name;
                 this.editSlug = this.items[index].slug;
-                console.log(this.editSlug);
                 this.items.splice(index,1);
             }
         }
