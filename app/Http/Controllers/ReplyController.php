@@ -62,7 +62,7 @@ class ReplyController extends Controller
     public function update(Question $question,Reply $reply,Request $request)
     {
         $reply->update($request->all());
-        return response('Updated',Response::HTTP_ACCEPTED);
+        return response(new ReplyResource($reply),Response::HTTP_ACCEPTED);
     }
 
     /**

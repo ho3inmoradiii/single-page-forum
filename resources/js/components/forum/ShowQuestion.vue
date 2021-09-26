@@ -10,7 +10,7 @@
                         <span class="grey--text">این سوال {{ data.created_at }} روز پیش توسط {{ data.user }} پرسیده شده است</span>
                     </div>
                     <v-spacer></v-spacer>
-                    <v-btn color="teal">{{ data.replies_count }} ریپلای</v-btn>
+                    <v-btn color="teal">{{ rep }} ریپلای</v-btn>
                 </v-card-title>
                 <v-card-text>
                     <div class="text-right" v-html="body">
@@ -34,7 +34,7 @@
 
         <v-container>
             <reply-new></reply-new>
-            <the-reply :replies="replies" v-if="replies"></the-reply>
+            <the-reply v-if="replies" :replies="replies" @changeReplyCount="ChangeT($event)"></the-reply>
         </v-container>
 
     </div>
@@ -49,20 +49,23 @@
         data(){
             return{
                 showActionButtons:false,
-                replies: {}
+                replies: {},
+                rep:null
             }
         },
         computed:{
             body(){
                 return marked.parse(this.data.body);
             },
+
         },
         created() {
             if (User.own(this.data.id)){
                 this.showActionButtons = true;
             }
             axios.get(`/api/question/${this.$route.params.questionSlug}/reply`)
-            .then(res => this.replies = res.data)
+            .then(res => this.replies = res.data);
+            this.ChangeT()
         },
         methods:{
             deletequestion(){
@@ -74,7 +77,11 @@
             },
             editQuestion(){
                 EventBus.$emit('startEditing')
-            }
+            },
+            ChangeT(replyCount)
+            {
+                this.rep=replyCount;
+            },
         }
     }
 </script>

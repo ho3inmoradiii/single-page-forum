@@ -4,7 +4,7 @@
             <v-form @submit.prevent="sendReply">
                 <vue-simplemde v-model="body" />
                 <v-btn dark color="green" type="submit">
-                    ارسال نظر
+                    ثبت
                 </v-btn>
             </v-form>
         </v-container>
