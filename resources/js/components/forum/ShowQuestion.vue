@@ -33,8 +33,8 @@
         </v-card>
 
         <v-container>
-            <reply-new></reply-new>
             <the-reply v-if="replies" :replies="replies" @changeReplyCount="ChangeT($event)"></the-reply>
+            <reply-new></reply-new>
         </v-container>
 
     </div>

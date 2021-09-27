@@ -1,9 +1,12 @@
 <template>
     <div class="mt-4">
         <v-card>
-            <v-card-title>
-                <div class="headline">{{ data.user }}</div>
-                <div class="mr-2">نظر داده {{ data.created_at }}</div>
+            <v-card-title class="d-flex justify-space-between">
+                <div class="d-flex">
+                    <div class="headline">{{ data.user }}</div>
+                    <div class="mr-2">نظر داده {{ data.created_at }}</div>
+                </div>
+                <the-like :content="data"></the-like>
             </v-card-title>
             <v-divider></v-divider>
             <edit-reply v-if="editing" :reply="data" :index="index"></edit-reply>
@@ -30,8 +33,9 @@
 
 <script>
     import EditReply from "./EditReply";
+    import TheLike from "../like/TheLike";
     export default {
-        components:{EditReply},
+        components:{EditReply,TheLike},
         data(){
             return{
                 showActions:false,

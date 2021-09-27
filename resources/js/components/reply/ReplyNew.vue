@@ -27,6 +27,7 @@
                 .then(res => {
                     this.body=''
                     EventBus.$emit('newReply',res.data)
+                    window.scrollTo(0,0);
                     // console.log(res.data)
                 })
             }
