@@ -30,6 +30,7 @@
                     window.scrollTo(0,0);
                     // console.log(res.data)
                 })
+                .catch(error => console.log(error.response.data))
             }
         }
     }

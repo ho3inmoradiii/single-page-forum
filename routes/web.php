@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/','home');
+//Route::get('notifications',[\App\Http\Controllers\NotifController::class,'show']);
 Route::view('/{any}','home');
 Route::view('/{any}/{any1}','home');
+

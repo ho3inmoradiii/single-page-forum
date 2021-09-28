@@ -9,6 +9,7 @@
             H.Forum
         </v-toolbar-title>
         <v-spacer></v-spacer>
+        <app-notification/>
         <div style="direction: rtl">
             <router-link v-for="item in items" :key="item.title" :to="item.to" v-if="item.show">
                 <v-btn
@@ -21,7 +22,9 @@
 </template>
 
 <script>
+    import AppNotification from './AppNotification';
     export default {
+        components:{AppNotification},
         data(){
             return{
                 items:[

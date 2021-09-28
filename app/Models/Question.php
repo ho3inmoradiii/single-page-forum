@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Question extends Model
 {
+    use Notifiable;
+
 //    protected $fillable = ['title','slug','body','category_id','user_id'];
 
     protected $guarded = [];
