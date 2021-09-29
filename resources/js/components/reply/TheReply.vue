@@ -39,12 +39,30 @@
                     .then(res => {
                         this.replies.splice(idx,1);
                     })
-
+                    .catch(error => console.log(error.response.data))
                 })
+
+                Echo.private('App.Models.User.' + User.id())
+                    .notification((notification) => {
+                        this.replies.unshift(notification.reply)
+                    })
+
+                Echo.channel('deleteReplyChannel')
+                    .listen('DeleteReplyEvent',(e) => {
+                        for (let index=0;index<this.replies.length;index++){
+                            if (this.replies[index].id === e.id){
+                                this.replies.splice(index,1);
+                            }
+                        }
+                    })
             },
             passEvent(){
                 this.$emit('changeReplyCount',this.repliesLength)
-            }
+            },
+
+
+
+
         }
     }
 </script>

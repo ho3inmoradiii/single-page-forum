@@ -37,6 +37,11 @@
                 this.showNotif = true
             }
             this.notifRoute();
+            Echo.private('App.Models.User.' + User.id())
+                .notification((notification) => {
+                    this.unRead.unshift(notification)
+                    this.unReadCount++
+                })
         },
         computed:{
             color(){

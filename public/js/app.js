@@ -1915,12 +1915,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
     if (User.loggedIn()) {
       this.getNotifications();
       this.showNotif = true;
     }
 
     this.notifRoute();
+    Echo["private"]('App.Models.User.' + User.id()).notification(function (notification) {
+      _this.unRead.unshift(notification);
+
+      _this.unReadCount++;
+    });
   },
   computed: {
     color: function color() {
@@ -1929,27 +1936,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getNotifications: function getNotifications() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("/api/notification").then(function (res) {
-        _this.read = res.data.read;
-        _this.unRead = res.data.unRead;
-        _this.unReadCount = res.data.unRead.length;
+        _this2.read = res.data.read;
+        _this2.unRead = res.data.unRead;
+        _this2.unReadCount = res.data.unRead.length;
       })["catch"](function (error) {
         return console.log(error.response.data);
       });
     },
     readIt: function readIt(notification) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post("/api/markAsRead", {
         id: notification.id
       }).then(function (res) {
-        _this2.unRead.splice(notification, 1);
+        _this3.unRead.splice(notification, 1);
 
-        _this2.read.push(notification);
+        _this3.read.push(notification);
 
-        _this2.unReadCount--;
+        _this3.unReadCount--;
       });
     },
     notifRoute: function notifRoute(item) {
@@ -3179,7 +3186,19 @@ __webpack_require__.r(__webpack_exports__);
       EventBus.$on('destroyReply', function (idx) {
         axios["delete"]("/api/question/".concat(_this.$route.params.questionSlug, "/reply/").concat(_this.replies[idx].id)).then(function (res) {
           _this.replies.splice(idx, 1);
+        })["catch"](function (error) {
+          return console.log(error.response.data);
         });
+      });
+      Echo["private"]('App.Models.User.' + User.id()).notification(function (notification) {
+        _this.replies.unshift(notification.reply);
+      });
+      Echo.channel('deleteReplyChannel').listen('DeleteReplyEvent', function (e) {
+        for (var index = 0; index < _this.replies.length; index++) {
+          if (_this.replies[index].id === e.id) {
+            _this.replies.splice(index, 1);
+          }
+        }
       });
     },
     passEvent: function passEvent() {
@@ -3549,7 +3568,12 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
   key: "2b8d3ae9160047de683d",
   cluster: "ap2",
-  forceTLS: true
+  forceTLS: true,
+  auth: {
+    headers: {
+      Authorization: JWTToken
+    }
+  }
 });
 
 /***/ }),
