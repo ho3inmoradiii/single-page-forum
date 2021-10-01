@@ -1943,7 +1943,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.unRead = res.data.unRead;
         _this2.unReadCount = res.data.unRead.length;
       })["catch"](function (error) {
-        return console.log(error.response.data);
+        // console.log(error)
+        Exception.handle(error);
       });
     },
     readIt: function readIt(notification) {
@@ -3272,6 +3273,52 @@ var AppStorage = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/Helpers/Exception.js":
+/*!*******************************************!*\
+  !*** ./resources/js/Helpers/Exception.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User */ "./resources/js/Helpers/User.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Exception = /*#__PURE__*/function () {
+  function Exception() {
+    _classCallCheck(this, Exception);
+  }
+
+  _createClass(Exception, [{
+    key: "handle",
+    value: function handle(error) {
+      this.isExpired(error.response.data.error);
+    }
+  }, {
+    key: "isExpired",
+    value: function isExpired(error) {
+      if (error === 'Token has Expired') {
+        _User__WEBPACK_IMPORTED_MODULE_0__.default.logout();
+      }
+    }
+  }]);
+
+  return Exception;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Exception = new Exception());
+
+/***/ }),
+
 /***/ "./resources/js/Helpers/Token.js":
 /*!***************************************!*\
   !*** ./resources/js/Helpers/Token.js ***!
@@ -3450,6 +3497,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(marked__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var material_design_icons_iconfont_dist_material_design_icons_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! material-design-icons-iconfont/dist/material-design-icons.css */ "./node_modules/material-design-icons-iconfont/dist/material-design-icons.css");
 /* harmony import */ var _Helpers_User__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Helpers/User */ "./resources/js/Helpers/User.js");
+/* harmony import */ var _Helpers_Exception__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Helpers/Exception */ "./resources/js/Helpers/Exception.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -3506,7 +3554,9 @@ $(document).ajaxStart(function () {
 Vue.component('AppHome', __webpack_require__(/*! ./components/AppHome.vue */ "./resources/js/components/AppHome.vue").default);
 Vue.component('vue-simplemde', vue_simplemde__WEBPACK_IMPORTED_MODULE_4__.default);
 
-window.User = _Helpers_User__WEBPACK_IMPORTED_MODULE_8__.default; // console.log(User.own(12));
+window.User = _Helpers_User__WEBPACK_IMPORTED_MODULE_8__.default;
+
+window.Exception = _Helpers_Exception__WEBPACK_IMPORTED_MODULE_9__.default; // console.log(User.own(12));
 
 window.EventBus = new Vue();
 /**

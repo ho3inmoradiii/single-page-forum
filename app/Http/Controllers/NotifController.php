@@ -9,6 +9,11 @@ use App\Http\Resources\NotificationResource;
 
 class NotifController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('JWT');
+    }
+
     public function index(){
         return [
             'read' => NotificationResource::collection(auth()->user()->readNotifications),

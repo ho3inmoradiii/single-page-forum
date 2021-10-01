@@ -65,6 +65,9 @@ Vue.component('vue-simplemde', VueSimplemde);
 import User from "./Helpers/User";
 window.User = User;
 
+import Exception from "./Helpers/Exception";
+window.Exception = Exception;
+
 // console.log(User.own(12));
 
 window.EventBus = new Vue();
