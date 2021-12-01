@@ -34,7 +34,8 @@
 
         <v-container>
             <the-reply v-if="replies" :replies="replies" @changeReplyCount="ChangeT($event)"></the-reply>
-            <reply-new></reply-new>
+            <reply-new v-if="loggedIn"></reply-new>
+            <router-link class="text-center d-inline-block w-100" v-else to="/login">برای ثبت نظر ابتدا وارد سایت شوید</router-link>
         </v-container>
 
     </div>
@@ -57,7 +58,9 @@
             body(){
                 return marked.parse(this.data.body);
             },
-
+            loggedIn(){
+                return User.loggedIn();
+            }
         },
         created() {
             if (User.own(this.data.id)){

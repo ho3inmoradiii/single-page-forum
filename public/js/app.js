@@ -2463,6 +2463,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2481,6 +2482,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     body: function body() {
       return marked.parse(this.data.body);
+    },
+    loggedIn: function loggedIn() {
+      return User.loggedIn();
     }
   },
   created: function created() {
@@ -3440,7 +3444,7 @@ var User = /*#__PURE__*/function () {
       var storedToken = _AppStorage__WEBPACK_IMPORTED_MODULE_1__.default.getToken();
 
       if (storedToken) {
-        return _Token__WEBPACK_IMPORTED_MODULE_0__.default.isValid(storedToken);
+        return _Token__WEBPACK_IMPORTED_MODULE_0__.default.isValid(storedToken) ? true : this.logout();
       }
 
       return false;
@@ -68406,7 +68410,16 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          _c("reply-new")
+          _vm.loggedIn
+            ? _c("reply-new")
+            : _c(
+                "router-link",
+                {
+                  staticClass: "text-center d-inline-block w-100",
+                  attrs: { to: "/login" }
+                },
+                [_vm._v("برای ثبت نظر ابتدا وارد سایت شوید")]
+              )
         ],
         1
       )
