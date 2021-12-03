@@ -1,12 +1,12 @@
 <template>
     <v-app-bar
-        color="accent-4"
+        color="indigo"
         dense
         dark
         app
     >
         <v-toolbar-title>
-            H.Forum
+            <router-link to="/" class="white--text">H.Forum</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <app-notification/>

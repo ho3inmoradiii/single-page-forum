@@ -14,12 +14,14 @@
                 color="pink"
                 type="submit"
                 v-if="editSlug"
+                :disabled="disabled"
             >ثبت تغییرات</v-btn>
             <v-btn
                 depressed
                 color="teal"
                 type="submit"
                 v-else
+                :disabled="disabled"
             >ثبت</v-btn>
         </v-form>
 
@@ -105,6 +107,11 @@
                 this.form.name = this.items[index].name;
                 this.editSlug = this.items[index].slug;
                 this.items.splice(index,1);
+            }
+        },
+        computed:{
+            disabled(){
+                return !(this.form.name)
             }
         }
     }

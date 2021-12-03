@@ -18,6 +18,8 @@ import marked from 'marked';
 window.marked = marked;
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
+Vue.use(require('vue-jalali-moment'));
+
 
 NProgress.configure({ easing: 'ease',showSpinner: false });
 

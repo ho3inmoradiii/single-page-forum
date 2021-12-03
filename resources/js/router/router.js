@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TheLogin from '../components/login/TheLogin';
+import Parallex from '../components/Parallex';
 import TheSignup from '../components/login/TheSignup';
 import TheForum from '../components/forum/TheForum';
 import TheLogout from '../components/login/TheLogout';
@@ -12,6 +13,7 @@ Vue.use(VueRouter)
 
 const routes = [
     { name:'Login', path: '/login', component: TheLogin },
+    { name:'home', path: '/', component: Parallex },
     { name:'Signup', path: '/signup', component: TheSignup },
     { name:'Logout', path: '/logout', component: TheLogout },
     { name:'Forum', path: '/forum', component: TheForum },

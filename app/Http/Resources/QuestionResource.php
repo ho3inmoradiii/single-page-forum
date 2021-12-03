@@ -15,8 +15,6 @@ class QuestionResource extends JsonResource
      */
     public function toArray($request)
     {
-        $now = Carbon::now();
-        $created_at = $this->created_at;
         return[
             'title' => $this->title,
             'path' => $this->path,
@@ -24,7 +22,7 @@ class QuestionResource extends JsonResource
             'replies' => $this->replies,
             'replies_count' => $this->replies->count(),
             'category' =>$this->category->name,
-            'created_at' => $now->diffInDays($created_at),
+            'created_at' => $this->created_at->format('m/d/Y'),
             'user' => $this->user->name,
             'id' => $this->user->id,
         ];

@@ -28,7 +28,11 @@
             <v-btn
                 depressed
                 color="primary"
-                type="submit">ثبت پرسش</v-btn>
+                type="submit"
+                :disabled="disabled"
+            >
+                ثبت پرسش
+            </v-btn>
         </v-form>
     </v-container>
 </template>
@@ -63,6 +67,11 @@
                     this.$router.push(res.data.path)
                 })
                 .catch(error => this.errors = error.response.data.error)
+            }
+        },
+        computed:{
+            disabled(){
+                return !(this.form.title && this.form.body && this.form.category_id)
             }
         }
     }

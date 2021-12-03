@@ -7,7 +7,7 @@
                         <div class="headline text-right">
                             {{ data.title }}
                         </div>
-                        <span class="grey--text">این سوال {{ data.created_at }} روز پیش توسط {{ data.user }} پرسیده شده است</span>
+                        <span class="grey--text">این سوال در تاریخ {{ data.created_at }} توسط {{ data.user }} پرسیده شده است</span>
                     </div>
                     <v-spacer></v-spacer>
                     <v-btn color="teal">{{ rep }} ریپلای</v-btn>

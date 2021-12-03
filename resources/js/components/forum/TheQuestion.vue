@@ -7,7 +7,7 @@
                         {{ question.title }}
                     </div>
                 </router-link>
-                <div class="grey--text text-right" style="direction: rtl">این سوال {{ question.created_at }} روز پیش توسط {{ question.user }} پرسیده شده است</div>
+                <div class="grey--text text-right" style="direction: rtl">این سوال در تاریخ {{ question.created_at }} توسط {{ question.user }} پرسیده شده است</div>
             </div>
         </v-card-title>
         <v-card-text>

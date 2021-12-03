@@ -29,6 +29,7 @@
                 unRead:{},
                 unReadCount:0,
                 showNotif:false,
+                sound: "https://soundbible.com/mp3/Tornado%20Siren-SoundBible.com-897026957.mp3"
             }
         },
         created() {
@@ -39,6 +40,7 @@
             this.notifRoute();
             Echo.private('App.Models.User.' + User.id())
                 .notification((notification) => {
+                    this.playSound()
                     this.unRead.unshift(notification)
                     this.unReadCount++
                 })
@@ -49,6 +51,10 @@
             }
         },
         methods:{
+            playSound(){
+                var alert = new Audio(this.sound);
+                alert.play();
+            },
             getNotifications(){
                 axios.get("/api/notification")
                 .then(res => {
